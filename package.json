@@ -1,9 +1,12 @@
 {
   "name": "linter-gams",
   "main": "./lib/main",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A linter provider for GAMS language",
-  "keywords": ["atom-linter", "linter-gams"],
+  "keywords": [
+    "atom-linter",
+    "linter-gams"
+  ],
   "repository": "https://github.com/chrispahm/linter-gams",
   "license": "MIT",
   "engines": {
