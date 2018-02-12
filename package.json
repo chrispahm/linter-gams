@@ -1,0 +1,27 @@
+{
+  "name": "linter-gams",
+  "main": "./lib/main",
+  "version": "0.0.0",
+  "description": "A linter provider for GAMS language",
+  "keywords": ["atom-linter", "linter-gams"],
+  "repository": "https://github.com/atom/linter-gams",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "atom-linter": "^10.0.0",
+    "shelljs": "^0.8.1",
+    "glob": "*"
+  },
+  "package-deps": [
+    "linter"
+  ],
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "2.0.0": "provideLinter"
+      }
+    }
+  }
+}
