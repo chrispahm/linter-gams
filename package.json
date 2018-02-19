@@ -15,7 +15,9 @@
   "dependencies": {
     "atom-linter": "^10.0.0",
     "shelljs": "^0.8.1",
-    "glob": "*"
+    "glob": "*",
+    "find-up": "*",
+    "readline-specific": "*"
   },
   "package-deps": [
     "linter"
