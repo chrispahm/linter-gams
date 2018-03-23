@@ -1,0 +1,30 @@
+<div id="app">
+	<div id="symbolContainer" v-for="symbol in tags" :key="symbol.name">
+		<h1>{{symbol.name}}</h1>
+		<div>
+			<h2 v-if="symbol.description">{{symbol.description}}</h2>
+			<h3 v-if="symbol.domain">Domain</h3>
+			<div v-if="symbol.domain" v-for="domain in symbol.domain" :key="domain.name">
+				<p>{{domain.name}}</p>
+			</div>
+			<h3 v-if="symbol.declared">Declared in {{symbol.declared.file}}, {{symbol.declared.line}}</h3>
+			<h3 v-if="symbol.defined">Defined in {{symbol.defined.file}}, {{symbol.defined.line}}</h3>
+			<h3 v-if="symbol.assigned">Assigned</h3>
+			<div v-if="symbol.assigned" v-for="assigned in symbol.assigned" :key="assigned.name">
+				<p>{{assigned.file}}, {{assigned.line}}</p>
+			</div>
+			<h3 v-if="symbol['impl-asn']">Implicitly assigned</h3>
+			<div v-if="symbol['impl-asn']" v-for="implAsn in symbol['impl-asn']" :key="implAsn.name">
+				<p>{{implAsn.file}}, {{implAsn.line}}</p>
+			</div>
+			<h3 v-if="symbol.ref">Referenced</h3>
+			<div v-if="symbol.ref" v-for="ref in symbol.ref" :key="ref.name">
+				<p>{{ref.file}}, {{ref.line}}</p>
+			</div>
+			<h3 v-if="symbol.control">Controled</h3>
+			<div v-if="symbol.control" v-for="control in symbol.control" :key="control.name">
+				<p>{{control.file}}, {{control.line}}</p>
+			</div>
+		</div>
+	</div>
+</div>
