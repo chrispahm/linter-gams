@@ -7,6 +7,9 @@ module.exports = {
 	'parserOptions': {
 		'sourceType': 'module'
 	},
+	'globals': {
+		'atom': true
+	},
 	'rules': {
 		'indent': [
 			'error',
