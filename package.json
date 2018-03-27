@@ -13,6 +13,7 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
+    "atom-package-deps": "^4.4.1",
     "css": "^2.2.1",
     "esprima": "^4.0.0",
     "htmlparser2": "^3.9.2",
