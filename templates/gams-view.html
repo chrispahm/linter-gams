@@ -1,9 +1,7 @@
 <div id='gamsView' class='structure-view'>
 	<div class="sv-toolbox block">
-		<button class="inline-block-tight btn icon icon-screen-normal" value="collapse" title="Collapse All"></button>
-		<button class="inline-block-tight btn icon icon-screen-full" value="expand" title="Expand All"></button>
-		<button class="inline-block-tight btn icon icon-question" title="Guide"></button>
-		<button class="inline-block-tight btn icon icon-settings" title="Settings"></button>
+		<button style="display:inline-block; vertical-align:top;height:30px" class="inline-block-tight btn icon icon-lock" value="lock" title="Toggle lock symbol" @click="toggleLock"></button>
+		<atom-text-editor style="display:inline-block;width:calc(100% - 50px)" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" tabindex="-1"></atom-text-editor>
 	</div>
 	<div class="no-file-hint" v-show="noTagHint"><pre>{{noTagHint}}</pre></div>
 	<div class="tree-panel" v-show="!noTagHint">
@@ -12,25 +10,25 @@
 			<h2 v-if="description">{{description}}</h2>
 			<div v-if="domain">
 				<h3>Domain</h3>
-				<p v-for="elem in domain" :key="assigned.name">{{elem.base}}, {{elem.line}}</p>
+				<p v-for="elem in domain" :key="assigned.name" @click="updateValues(null,elem.name)">{{elem.name}}</p>
 			</div>
-			<h3 v-if="declared">Declared in {{declared.base}}, {{declared.line}}</h3>
-			<h3 v-if="defined">Defined in {{defined.base}}, {{defined.line}}</h3>
+			<h3 v-if="declared" @click="jumpToPosition(declared.file,declared.line,declared.column)">Declared in {{declared.base}}, {{declared.line}}</h3>
+			<h3 v-if="defined" @click="jumpToPosition(defined.file,defined.line,defined.column)">Defined in {{defined.base}}, {{defined.line}}</h3>
 			<div v-if="assigned">
 				<h3>Assigned</h3>
-				<p v-for="elem in assigned" :key="assigned.name">{{elem.base}}, {{elem.line}}</p>
+				<p v-for="elem in assigned" :key="assigned.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 			</div>
 			<div v-if="implAsn">
 				<h3 >Implicitly assigned</h3>
-				<p v-for="elem in implAsn" :key="implAsn.name">{{elem.base}}, {{elem.line}}</p>
+				<p v-for="elem in implAsn" :key="implAsn.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 			</div>
 			<div v-if="ref">
 				<h3>Referenced</h3>
-				<p v-for="elem in ref" :key="ref.name">{{elem.base}}, {{elem.line}}</p>
+				<p v-for="elem in ref" :key="ref.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 			</div>
 			<div v-if="control">
 				<h3 >Controlled</h3>
-					<p v-for="elem in control" :key="control.name">{{elem.base}}, {{elem.line}}</p>
+					<p v-for="elem in control" :key="control.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 			</div>
 		</div>
 	</div>
