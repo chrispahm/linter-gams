@@ -1,6 +1,17 @@
 @import "ui-variables";
 
-.structure-view {
+.expand-transition {
+  transition: all .3s ease;
+  overflow: hidden;
+}
+/* .expand-enter defines the starting state for entering */
+/* .expand-leave defines the ending state for leaving */
+.expand-enter, .expand-leave {
+  height: 0;
+  opacity: 0;
+}
+
+.gams-view {
   width: 100%;
   height: 100%;
   padding: 4px;
@@ -19,13 +30,27 @@
 	}
 
 	h3 {
+    display: inline-block;
+    padding-right: 7px;
 		margin-bottom: 10px;
 		cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 	}
 
 	h2 {
 		font-style: italic;
 	}
+  .counter {
+    border-radius: 12px;
+    display: inline-block;
+    border: none;
+  }
+
   .mask {
     display: none;
     text-align: center;
@@ -103,7 +128,7 @@
     font-weight: 600;
   }
 
-  div.sv-toolbox {
+  div.gv-toolbox {
     border-style: solid;
     border-top: 0;
     border-left: 0;
