@@ -6,6 +6,7 @@
 	<div class="no-file-hint" v-show="noTagHint"><pre>{{noTagHint}}</pre></div>
 	<div class="tree-panel" v-show="!noTagHint">
 		<h1>{{name}}</h1>
+		<div>{{type}}</div>
 		<div>
 			<h2 v-if="description">{{description}}</h2>
 			<div v-if="domain">
