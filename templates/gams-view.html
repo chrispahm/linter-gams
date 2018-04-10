@@ -4,7 +4,7 @@
 		<div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight icon-right basic-button" value="lock" title="Forward" @click="moveCursor"></div>
 		<div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight basic-button" value="lock" title="Toggle lock symbol" @click="toggleLock" v-bind:class="{ 'icon-locked': locked, 'icon-unlocked': !locked}"></div>
 		<div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight basic-button" value="lock" title="Run GAMS model" @click="toggleLock" v-bind:class="{ 'icon-run': !run, 'icon-pause': run}"></div>
-		<atom-text-editor style="display:inline-block;width:calc(100% - 50px)" id="gamsViewSearch" v-on:keyup="searchItem" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
+		<atom-text-editor style="display:inline-block;width:calc(100% - 150px)" id="gamsViewSearch" v-on:keyup="searchItem" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
 	</div>
 	<div class="no-file-hint" v-show="noTagHint"><pre>{{noTagHint}}</pre></div>
 	<div class="tree-panel" v-show="!noTagHint">

@@ -4,3 +4,4 @@ node_modules
 *.ref
 *.dat
 *.tags
+*.err
