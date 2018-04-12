@@ -8,7 +8,8 @@ module.exports = {
 		'sourceType': 'module'
 	},
 	'globals': {
-		'atom': true
+		'atom': true,
+    'document': true
 	},
 	'rules': {
 		'indent': [
@@ -26,6 +27,7 @@ module.exports = {
 		'semi': [
 			'error',
 			'never'
-		]
+		],
+    'no-useless-escape': 'off'
 	}
 }
