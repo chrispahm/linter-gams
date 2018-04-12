@@ -25,6 +25,7 @@
     "parse-columns": "^1.3.0",
     "readline-specific": "^1.0.4",
     "shelljs": "^0.8.1",
+    "simple-undo": "^1.0.2",
     "vue": "1.0.27-csp"
   },
   "package-deps": [
