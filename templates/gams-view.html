@@ -7,7 +7,7 @@
 		<atom-text-editor style="display:inline-block;width:calc(100% - 50px)" id="gamsViewSearch" v-on:keyup="searchItem" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
 	</div>
 	<div class="no-file-hint" v-show="noTagHint"><pre>{{noTagHint}}</pre></div>
-	<div class="tree-panel" v-show="!noTagHint">
+	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams'">
 		<h1>{{name}}</h1>
 		<div>{{type}}</div>
 		<div>
@@ -55,6 +55,22 @@
 				<div transition="expand">
 					<p v-for="elem in control" :key="control.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams-lst'">
+		<div v-if="lstTree">
+			<div v-for="elem in lstTree">
+				<h3 @click="jumpToggle(elem)"> {{elem.type}} </h3>
+				<button v-if="elem.entries" class="counter" type="button" name="button" @click=""> {{elem.entries.length}} </button>
+				<div v-if="elem.entries && condition" transition="expand">
+					<p v-if="elem.entries" v-for="entry in elem.entries" :key="entry.name" @click="jumpToPosition(entry.file,entry.line,entry.column)">{{entry.name}}, {{entry.line}}</p>
+				</div>
+			</div>
+		</div>
+		<div v-if="assigned && assignedShown">
+			<div transition="expand">
+				<p v-for="elem in assigned" :key="assigned.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 			</div>
 		</div>
 	</div>
