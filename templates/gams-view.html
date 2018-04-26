@@ -61,8 +61,8 @@
 	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams-lst'">
 		<div v-if="lstTree">
 			<div v-for="elem in lstTree">
-				<h3 @click="jumpToggle(elem)"> {{elem.type}} </h3>
-				<button v-if="elem.entries" class="counter" type="button" name="button" @click="jumpToggle(elem)"> {{elem.entries.length}} </button>
+				<h3 style="font-weight: normal; font-size: 1em; display: inline-block; line-height: 1em; padding-right: 7px; margin-top: 4px; margin-bottom: 4px;" @click="jumpToggle(elem)"> {{elem.type}} </h3>
+				<button v-if="elem.entries" style="margin-top: 2px; margin-bottom: 2px;"class="counter" type="button" name="button" @click="jumpToggle(elem)"> {{elem.entries.length}} </button>
 				<div v-if="elem.entries && elem.open" transition="expand">
 					<p v-if="elem.entries" v-for="entry in elem.entries" :key="entry.name" @click="jumpToPosition(entry.file,entry.line,entry.column)">{{entry.name}}, {{entry.line}}</p>
 				</div>
