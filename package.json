@@ -31,8 +31,7 @@
   "package-deps": [
     "linter",
     "language-gams",
-    "gams-helpers",
-    "cursor-history"
+    "gams-helpers"
   ],
   "providedServices": {
     "linter": {
