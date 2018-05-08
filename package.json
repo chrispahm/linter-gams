@@ -18,6 +18,7 @@
     "css": "^2.2.1",
     "esprima": "^4.0.0",
     "find-up": "^2.1.0",
+    "fuzzaldrin": "^2.1.0",
     "glob": "*",
     "htmlparser2": "^3.9.2",
     "jquery": "^3.3.1",

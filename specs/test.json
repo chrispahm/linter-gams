@@ -1,0 +1,14 @@
+[
+    {
+        "type": "Display",
+        "entries": [
+            {
+                "name": "p_maxRotShare",
+                "line": 117950,
+                "column": 1,
+                "file": "N:\\agpo\\work1\\FarmDyn_Pah\\FarmD\\gams\\exp_starter.lst"
+            }
+        ],
+        "open": false
+    }
+]
