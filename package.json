@@ -1,7 +1,7 @@
 {
   "name": "linter-gams",
   "main": "./lib/main",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "A linter provider for GAMS language",
   "keywords": [
     "atom-linter",
@@ -13,17 +13,20 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
+    "atom-linter": "^10.0.0",
     "atom-package-deps": "^4.4.1",
     "css": "^2.2.1",
     "esprima": "^4.0.0",
-    "htmlparser2": "^3.9.2",
-    "atom-linter": "^10.0.0",
     "find-up": "^2.1.0",
+    "fuzzaldrin": "^2.1.0",
     "glob": "*",
+    "htmlparser2": "^3.9.2",
     "jquery": "^3.3.1",
     "lodash": "^4.17.5",
+    "parse-columns": "^1.3.0",
     "readline-specific": "^1.0.4",
     "shelljs": "^0.8.1",
+    "simple-undo": "^1.0.2",
     "vue": "1.0.27-csp"
   },
   "package-deps": [

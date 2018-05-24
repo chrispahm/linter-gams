@@ -8,12 +8,13 @@ module.exports = {
 		'sourceType': 'module'
 	},
 	'globals': {
-		'atom': true
+		'atom': true,
+    'document': true
 	},
 	'rules': {
 		'indent': [
 			'error',
-			'tab'
+			2
 		],
 		'linebreak-style': [
 			'error',
@@ -26,6 +27,7 @@ module.exports = {
 		'semi': [
 			'error',
 			'never'
-		]
+		],
+    'no-useless-escape': 'off'
 	}
 }

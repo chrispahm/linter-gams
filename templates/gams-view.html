@@ -1,10 +1,13 @@
 <div class='gams-view'>
-	<div class="gv-toolbox block">
-		<div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight" value="lock" title="Toggle lock symbol" @click="toggleLock" v-bind:class="{ 'icon-locked': locked, 'icon-unlocked': !locked}"></div>
-		<atom-text-editor style="display:inline-block;width:calc(100% - 50px)" id="gamsViewSearch" v-on:keyup="searchItem" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
-	</div>
 	<div class="no-file-hint" v-show="noTagHint"><pre>{{noTagHint}}</pre></div>
-	<div class="tree-panel" v-show="!noTagHint">
+	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams'">
+    <div class="gv-toolbox block">
+      <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight icon-left basic-button" value="lock" title="Backward" @click="moveCursor('back')"></div>
+      <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight icon-right basic-button" value="lock" title="Forward" @click="moveCursor"></div>
+      <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight basic-button" value="lock" title="Toggle lock symbol" @click="toggleLock" v-bind:class="{ 'icon-locked': locked, 'icon-unlocked': !locked}"></div>
+      <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight basic-button" value="lock" title="Run GAMS model" @click="runModel" v-bind:class="{ 'icon-run': !run, 'icon-pause': run}"></div>
+      <atom-text-editor style="display:inline-block;width:calc(100% - 140px)" id="gamsSearch" v-on:keyup="updateVue()" v-model="searchString" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
+    </div>
 		<h1>{{name}}</h1>
 		<div>{{type}}</div>
 		<div>
@@ -52,6 +55,25 @@
 				<div transition="expand">
 					<p v-for="elem in control" :key="control.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams-lst'">
+    <div class="gv-toolbox block">
+      <atom-text-editor style="display:inline-block;width:100%" id="lstSearch" v-on:keyup="updateLst()" v-model="searchStringLst" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
+    </div>
+		<div v-if="lstTree">
+			<div v-for="elem in lstTree">
+				<h3 style="font-weight: normal; font-size: 1em; display: inline-block; line-height: 1em; padding-right: 7px; margin-top: 4px; margin-bottom: 4px;" @click="jumpToggle(elem)"> {{elem.type}} </h3>
+				<button v-if="elem.entries" style="margin-top: 2px; margin-bottom: 2px;"class="counter" type="button" name="button" @click="jumpToggle(elem)"> {{elem.entries.length}} </button>
+				<div v-if="elem.entries && elem.open" transition="expand">
+					<p v-if="elem.entries" v-for="entry in elem.entries" :key="entry.name" @click="jumpToPosition(entry.file,entry.line,entry.column)">{{entry.name}}, {{entry.line}}</p>
+				</div>
+			</div>
+		</div>
+		<div v-if="assigned && assignedShown">
+			<div transition="expand">
+				<p v-for="elem in assigned" :key="assigned.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 			</div>
 		</div>
 	</div>

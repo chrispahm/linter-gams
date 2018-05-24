@@ -35,6 +35,7 @@
 	h3 {
     display: inline-block;
     padding-right: 7px;
+		margin-top: 10px;
 		margin-bottom: 10px;
 		cursor: pointer;
     -webkit-touch-callout: none;
@@ -147,22 +148,37 @@
     }
   }
 
+  .icon-left {
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="@{text-color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>');
+	}
+
+	.icon-right {
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="@{text-color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>');
+	}
+
+	.icon-run {
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="@{text-color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>');
+	}
+
+	.icon-pause {
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="@{text-color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pause"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>');
+	}
+
   .icon-locked {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 401.998 401.998"> <path fill="@{text-color}" d="M357.45 190.721c-5.331-5.33-11.8-7.993-19.417-7.993h-9.131v-54.821c0-35.022-12.559-65.093-37.685-90.218C266.093 12.563 236.025 0 200.998 0c-35.026 0-65.1 12.563-90.222 37.688-25.126 25.126-37.685 55.196-37.685 90.219v54.821h-9.135c-7.611 0-14.084 2.663-19.414 7.993-5.33 5.326-7.994 11.799-7.994 19.417V374.59c0 7.611 2.665 14.086 7.994 19.417 5.33 5.325 11.803 7.991 19.414 7.991H338.04c7.617 0 14.085-2.663 19.417-7.991 5.325-5.331 7.994-11.806 7.994-19.417V210.135c.004-7.612-2.669-14.084-8.001-19.414zm-83.363-7.993H127.909v-54.821c0-20.175 7.139-37.402 21.414-51.675 14.277-14.275 31.501-21.411 51.678-21.411 20.179 0 37.399 7.135 51.677 21.411 14.271 14.272 21.409 31.5 21.409 51.675v54.821z"/> </svg>');
-    background-size: 16px 16px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: @base-background-color;
-    border-radius: 2px;
-    border: 1px solid @button-border-color;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="@{text-color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>');
   }
+
   .icon-unlocked {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 438.533 438.533"> <path fill="@{text-color}" d="M375.721 227.259c-5.331-5.331-11.8-7.992-19.417-7.992H146.176v-91.36c0-20.179 7.139-37.402 21.415-51.678 14.277-14.273 31.501-21.411 51.678-21.411 20.175 0 37.402 7.137 51.673 21.411 14.277 14.276 21.416 31.5 21.416 51.678 0 4.947 1.807 9.229 5.42 12.845 3.621 3.617 7.905 5.426 12.847 5.426h18.281c4.945 0 9.227-1.809 12.848-5.426 3.606-3.616 5.42-7.898 5.42-12.845 0-35.216-12.515-65.331-37.541-90.362C284.603 12.513 254.48 0 219.269 0c-35.214 0-65.334 12.513-90.366 37.544-25.028 25.028-37.542 55.146-37.542 90.362v91.36h-9.135c-7.611 0-14.084 2.667-19.414 7.992-5.33 5.325-7.994 11.8-7.994 19.414v164.452c0 7.617 2.665 14.089 7.994 19.417 5.33 5.325 11.803 7.991 19.414 7.991h274.078c7.617 0 14.092-2.666 19.417-7.991 5.325-5.328 7.994-11.8 7.994-19.417V246.673c.004-7.614-2.662-14.082-7.994-19.414z"/> </svg>');
-    background-size: 16px 16px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: @base-background-color;
-    border-radius: 2px;
-    border: 1px solid @button-border-color;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="@{text-color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-unlock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>');
   }
+
+	.basic-button {
+		background-size: 16px 16px;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-color: @base-background-color;
+		border-radius: 2px;
+		margin: 0px;
+		border: 1px solid @button-border-color;
+	}
 }
