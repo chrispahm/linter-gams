@@ -1,23 +1,23 @@
 # linter-gams
 
-A plugin for [Atom Linter](https://github.com/AtomLinter/atom-linter) providing a compilation checker for your [GAMS](https://www.gams.com/) models.
-Also adds some GAMS IDE features to Atom.
-![linter-gams](https://user-images.githubusercontent.com/20703207/38366894-78855850-38e1-11e8-8561-16f4b067c9e7.gif)
+A plugin for [Atom Linter](https://github.com/AtomLinter/atom-linter) providing a compilation checker for your [GAMS](https://www.gams.com/) models,
+and a sidebar for symbol investigation/navigation. Also supports listing files (.lst).
+![linter-gams](https://user-images.githubusercontent.com/20703207/40918732-754cd8de-6807-11e8-8e41-b1231e625d9a.gif)
 
 ## Installation
-You can install through the CLI by doing:
+You can install from Settings view (`shift-comma`) by searching for `linter-gams`.
+
+Alternatively, you can install through the CLI by running:
 
 ```
-$ apm install linter-gams
+apm install linter-gams
 ```
-
-Or you can install from Settings view by searching for `linter-gams`.
 
 ## Configuration
 In order to function properly, linter-gams needs a valid GAMS executable. It will check for the latest GAMS version found in the PATH variable and the default install directories (Win: `C:/GAMS/\*/\*/`, `N:/soft/GAMS*/`, OSX: `/Applications/GAMS*/sysdir/`).
 If no installation was found in the default directories, you need to specify one in the packages settings pane. `Linter-gams` runs on top of a regular GAMS installation, therefore the general [GAMS licensing](https://www.gams.com/latest/docs/UG_License.html) restrictions apply.
 
-![linter-gams-settings](https://user-images.githubusercontent.com/20703207/38366897-78d2c1d0-38e1-11e8-8ee1-5156fd72c0f8.PNG)
+![settings](https://user-images.githubusercontent.com/20703207/40918856-e4e8ef3e-6807-11e8-8d1f-b588a36bc035.PNG)
 
 
 Linter-GAMS will try to find out if your GAMS file is part of a [GGIG](http://www.ilr.uni-bonn.de/em/rsrch/ggig/ggig_e.htm) project and will do the necessary adjustments by itself.
@@ -44,13 +44,13 @@ Note that only the first error will be displayed, as typically subsequent errors
 ### Symbol overview
 In order to inspect where a variable/parameter/set was defined/assigned values/controlled/referenced or just to see its description, you can open `GAMS View` by using the shortcut `ctrl-o` or by opening the command palette (`ctrl-shift-p`) and typing `GAMS View: Show`. If the cursor is set inside a known symbol, the sidebar will be updated accordingly. A click on a given entry will jump to that symbol (also if the symbol is in another file). If you want to keep the sidebar from constantly updating while moving the cursor (e.g. when deeply inspecting a given symbol), you can click the lock button in the top left corner.
 
-![gams-view](https://user-images.githubusercontent.com/20703207/38366893-7866374a-38e1-11e8-963b-fa0f88fa44dd.PNG)
+![sidebar](https://user-images.githubusercontent.com/20703207/40918757-892cfd84-6807-11e8-8cbe-d1a01b6aff8d.PNG)
 
 You can also search for a symbol. However, the sidebar will only be updated if the search string completely matches a known symbol. At the moment, there is no autocompletion of symbols in the searchbar.
 
 ### Running your model
 
-You can run your model from inside the editor by pressing `shift-enter` or by opening the command palette (`ctrl-shift-p`) and typing `GAMS run` or just `run`. The model will be solved in the background, so you can continue working. While the model is solving, the `busy-signal` dot (usually green) at the bottom will be blinking. Once the model is solved, the listing file will be opened automatically in a new pane.
+There are multiple options for running your model: You can either press the 'run' button in the sidebar, by pressing `shift-enter` or by opening the command palette (`ctrl-shift-p`) and typing `GAMS run` or just `run`. The model will be solved in the background, so you can continue working. While the model is solving, the `busy-signal` dot (usually green) at the bottom will be blinking. Once the model is solved, the listing file will be opened automatically in a new pane.
 
 ### Inspecting a parameter / set at a given position
 
