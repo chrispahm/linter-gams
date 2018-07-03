@@ -14,7 +14,7 @@ apm install linter-gams
 ```
 
 ## Configuration
-In order to function properly, linter-gams needs a valid GAMS executable. It will check for the latest GAMS version found in the PATH variable and the default install directories (Win: `C:/GAMS/\*/\*/`, `N:/soft/GAMS*/`, OSX: `/Applications/GAMS*/sysdir/`).
+In order to function properly, linter-gams needs a valid GAMS executable. It will check for the latest GAMS version found in the PATH variable and the default install directories (Win: `C:/GAMS/*/*/`, `N:/soft/GAMS*/`, OSX: `/Applications/GAMS*/sysdir/`).
 If no installation was found in the default directories, you need to specify one in the packages settings pane. `Linter-gams` runs on top of a regular GAMS installation, therefore the general [GAMS licensing](https://www.gams.com/latest/docs/UG_License.html) restrictions apply.
 
 ![settings](https://user-images.githubusercontent.com/20703207/40918856-e4e8ef3e-6807-11e8-8d1f-b588a36bc035.PNG)
@@ -63,6 +63,7 @@ Sometimes you need to check your parameters/sets values at a given position. Oft
   - Using the fuzzy file finder `ctrl-p` instead of searching for a file in the project tree view
   - Using the main shortcut `ctrl-shift-p` and then type what you want to do (like `Bookmark`, `top`, `bot`)
   - Jumping to the next error (even if its in a different file) by opening the command palette (`ctrl-shift-p`) and typing `linter next` or even shorter `li ne`. You can also click on the error in the error pane at the bottom.
+  - The amazing [filter-lines](https://atom.io/packages/filter-lines) package (especially useful in Listing files). Just highlight the desired word/symbol and press `ctrl-alt-f`. Similar to KEDITS ALL command.
 
 ## Known errors
 `Uncaught TypeError: Cannot read property 'removeChild' of null`
