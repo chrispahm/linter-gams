@@ -51,9 +51,19 @@ There are multiple options for running your model: You can either press the 'run
 
 ### Inspecting a parameter / set at a given position
 
+Sometimes you need to check your parameters/sets values at a given position. Often, an abort statement is used in order to stop execution at that point and to display the values of the parameter. Linter-gams gives you two options on how to speed up that process:
+
+If you type
+```GAMS
+abort myParameterOrSet;
+```
+and run your model (see section above), linter-gams will automatically jump to the parameter display in the listing file. Make sure you have the GAMS View sidebar opened (shift-o), otherwise the listing file will be opened at the beggining of the document.
+
+For very large sets and parameters, an inspection through pivot tables (as seen in the GDX-viewer of the GAMS-IDE or GAMS Studio) is beneficial:
+
 ![check-param](https://user-images.githubusercontent.com/20703207/38366892-784d5d06-38e1-11e8-9524-2ccbe697eaa8.gif)
 
-Sometimes you need to check your parameters/sets values at a given position. Often, an abort statement is used in that case in order to stop execution at that point and to display the values of the parameter. In order to speed up that process, you can simply type `c` at the desired position and press `TAB` in order to complete the snippet. As shown in the above gif, two lines will be pre-filled for you, so now all you have to do is enter the name of the set/parameter to inspect. Once done, just press `shift-alt-enter`. The model will again run in the background, and open the desired set/parameter in a new browser tab.
+In order to speed up that process, you can simply type `c` at the desired position and press `TAB` in order to complete the snippet. As shown in the above gif, two lines will be pre-filled for you, so now all you have to do is enter the name of the set/parameter to inspect. Once done, just press `shift-alt-enter`. The model will again run in the background, and open the desired set/parameter in a new browser tab. This feature requires a working `Python` installation in the path variable.
 
 ### Other things I found useful in Atom for GAMS coding
   - The pre-installed autosave functionality (Settings -> Packages -> Autosave -> Enable (it's a checkbox inside the packages settings)).
