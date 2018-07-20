@@ -14,19 +14,16 @@ apm install linter-gams
 ```
 
 ## Configuration
+
+![settings](https://user-images.githubusercontent.com/20703207/43004451-1f473a2c-8c30-11e8-9a51-8203fc7121b0.png)
+
 In order to function properly, linter-gams needs a valid GAMS executable. It will check for the latest GAMS version found in the PATH variable and the default install directories (Win: `C:/GAMS/*/*/`, `N:/soft/GAMS*/`, OSX: `/Applications/GAMS*/sysdir/`).
-If no installation was found in the default directories, you need to specify one in the packages settings pane. `Linter-gams` runs on top of a regular GAMS installation, therefore the general [GAMS licensing](https://www.gams.com/latest/docs/UG_License.html) restrictions apply.
+If no installation was found in the default directories, you need to specify one in the packages settings pane (as shown in the picture above). `Linter-gams` runs on top of a regular GAMS installation, therefore the general [GAMS licensing](https://www.gams.com/latest/docs/UG_License.html) restrictions apply.
 
-![settings](https://user-images.githubusercontent.com/20703207/40918856-e4e8ef3e-6807-11e8-8d1f-b588a36bc035.PNG)
-
-
-Linter-GAMS will try to find out if your GAMS file is part of a [GGIG](http://www.ilr.uni-bonn.de/em/rsrch/ggig/ggig_e.htm) project and will do the necessary adjustments by itself.
+Linter-gams will try to find out if your GAMS file is part of a [GGIG](http://www.ilr.uni-bonn.de/em/rsrch/ggig/ggig_e.htm) project and will do the necessary adjustments by itself. If you are working on a (non GGIG) multi-file model and want to specify the GAMS entry file, you may do so in the package settings pane. Note that you don't need to specify a path, but rather the actual entry point file name (e.g. entryFile.gms). Linter-gams will search for this file in the same directory as the currently opened file, as well as the first two parent directories.
 
 By default, linter-gams will also create a symbol list file (ctags compatible) in your projects root directory.
 This way you can jump to a declaration of a set/parameter/equation etc. as highlighted in the Atom [symbols-view](https://atom.io/packages/symbols-view) core package.
-
-If you have a multi-file model which is not part of a GGIG project, there currently is no way to tell linter-gams about the entry point of your model. If you are familiar with JavaScript, you can do the necesssary adjustments in the `lib/linter.js` file (by adjusting the value of the `expStarter` variable), if not just open an issue.
-
 ## Usage
 
 linter-gams will install all necessary packages for GAMS development. Those include [syntax highlighting](atom-language-gams), the [base linter](https://atom.io/packages/linter) (used for error underlining), and some [GAMS helper](https://atom.io/packages/gams-helpers) functions which will be explained here.
