@@ -14,19 +14,16 @@ apm install linter-gams
 ```
 
 ## Configuration
-In order to function properly, linter-gams needs a valid GAMS executable. It will check for the latest GAMS version found in the PATH variable and the default install directories (Win: `C:/GAMS/\*/\*/`, `N:/soft/GAMS*/`, OSX: `/Applications/GAMS*/sysdir/`).
-If no installation was found in the default directories, you need to specify one in the packages settings pane. `Linter-gams` runs on top of a regular GAMS installation, therefore the general [GAMS licensing](https://www.gams.com/latest/docs/UG_License.html) restrictions apply.
 
-![settings](https://user-images.githubusercontent.com/20703207/40918856-e4e8ef3e-6807-11e8-8d1f-b588a36bc035.PNG)
+![settings](https://user-images.githubusercontent.com/20703207/43004451-1f473a2c-8c30-11e8-9a51-8203fc7121b0.png)
 
+In order to function properly, linter-gams needs a valid GAMS executable. It will check for the latest GAMS version found in the PATH variable and the default install directories (Win: `C:/GAMS/*/*/`, `N:/soft/GAMS*/`, OSX: `/Applications/GAMS*/sysdir/`).
+If no installation was found in the default directories, you need to specify one in the packages settings pane (as shown in the picture above). `Linter-gams` runs on top of a regular GAMS installation, therefore the general [GAMS licensing](https://www.gams.com/latest/docs/UG_License.html) restrictions apply.
 
-Linter-GAMS will try to find out if your GAMS file is part of a [GGIG](http://www.ilr.uni-bonn.de/em/rsrch/ggig/ggig_e.htm) project and will do the necessary adjustments by itself.
+Linter-gams will try to find out if your GAMS file is part of a [GGIG](http://www.ilr.uni-bonn.de/em/rsrch/ggig/ggig_e.htm) project and will do the necessary adjustments by itself. If you are working on a (non GGIG) multi-file model and want to specify the GAMS entry file, you may do so in the package settings pane. Note that you don't need to specify a path, but rather the actual entry point file name (e.g. entryFile.gms). Linter-gams will search for this file in the same directory as the currently opened file, as well as the first two parent directories.
 
 By default, linter-gams will also create a symbol list file (ctags compatible) in your projects root directory.
 This way you can jump to a declaration of a set/parameter/equation etc. as highlighted in the Atom [symbols-view](https://atom.io/packages/symbols-view) core package.
-
-If you have a multi-file model which is not part of a GGIG project, there currently is no way to tell linter-gams about the entry point of your model. If you are familiar with JavaScript, you can do the necesssary adjustments in the `lib/linter.js` file (by adjusting the value of the `expStarter` variable), if not just open an issue.
-
 ## Usage
 
 linter-gams will install all necessary packages for GAMS development. Those include [syntax highlighting](atom-language-gams), the [base linter](https://atom.io/packages/linter) (used for error underlining), and some [GAMS helper](https://atom.io/packages/gams-helpers) functions which will be explained here.
@@ -54,15 +51,26 @@ There are multiple options for running your model: You can either press the 'run
 
 ### Inspecting a parameter / set at a given position
 
+Sometimes you need to check your parameters/sets values at a given position. Often, an abort statement is used in order to stop execution at that point and to display the values of the parameter. Linter-gams gives you two options on how to speed up that process:
+
+If you type
+```GAMS
+abort myParameterOrSet;
+```
+and run your model (see section above), linter-gams will automatically jump to the parameter display in the listing file. Make sure you have the GAMS View sidebar opened (shift-o), otherwise the listing file will be opened at the beggining of the document.
+
+For very large sets and parameters, an inspection through pivot tables (as seen in the GDX-viewer of the GAMS-IDE or GAMS Studio) is beneficial:
+
 ![check-param](https://user-images.githubusercontent.com/20703207/38366892-784d5d06-38e1-11e8-9524-2ccbe697eaa8.gif)
 
-Sometimes you need to check your parameters/sets values at a given position. Often, an abort statement is used in that case in order to stop execution at that point and to display the values of the parameter. In order to speed up that process, you can simply type `c` at the desired position and press `TAB` in order to complete the snippet. As shown in the above gif, two lines will be pre-filled for you, so now all you have to do is enter the name of the set/parameter to inspect. Once done, just press `shift-alt-enter`. The model will again run in the background, and open the desired set/parameter in a new browser tab.
+In order to speed up that process, you can simply type `c` at the desired position and press `TAB` in order to complete the snippet. As shown in the above gif, two lines will be pre-filled for you, so now all you have to do is enter the name of the set/parameter to inspect. Once done, just press `shift-alt-enter`. The model will again run in the background, and open the desired set/parameter in a new browser tab. This feature requires a working `Python` installation in the path variable.
 
 ### Other things I found useful in Atom for GAMS coding
   - The pre-installed autosave functionality (Settings -> Packages -> Autosave -> Enable (it's a checkbox inside the packages settings)).
   - Using the fuzzy file finder `ctrl-p` instead of searching for a file in the project tree view
   - Using the main shortcut `ctrl-shift-p` and then type what you want to do (like `Bookmark`, `top`, `bot`)
   - Jumping to the next error (even if its in a different file) by opening the command palette (`ctrl-shift-p`) and typing `linter next` or even shorter `li ne`. You can also click on the error in the error pane at the bottom.
+  - The amazing [filter-lines](https://atom.io/packages/filter-lines) package (especially useful in Listing files). Just highlight the desired word/symbol and press `ctrl-alt-f`. Similar to KEDITS ALL command.
 
 ## Known errors
 `Uncaught TypeError: Cannot read property 'removeChild' of null`
