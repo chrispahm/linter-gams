@@ -60,7 +60,7 @@
 	</div>
 	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams-lst'">
     <div class="gv-toolbox block">
-      <atom-text-editor style="display:inline-block;width:100%" id="lstSearch" v-on:keyup="updateLst()" v-model="searchStringLst" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
+      <atom-text-editor style="display:inline-block;width:100%" id="lstSearch" v-on:keyup="updateLst()" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
     </div>
 		<div v-if="lstTree">
 			<div v-for="elem in lstTree">
