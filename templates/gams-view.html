@@ -6,7 +6,7 @@
       <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight icon-right basic-button" value="lock" title="Forward" @click="moveCursor"></div>
       <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight basic-button" value="lock" title="Toggle lock symbol" @click="toggleLock" v-bind:class="{ 'icon-locked': locked, 'icon-unlocked': !locked}"></div>
       <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight basic-button" value="lock" title="Run GAMS model" @click="runModel" v-bind:class="{ 'icon-run': !run, 'icon-pause': run}"></div>
-      <atom-text-editor style="display:inline-block;width:calc(100% - 140px)" id="gamsSearch" v-on:keyup="updateVue()" v-model="searchString" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
+      <atom-text-editor style="display:inline-block;width:calc(100% - 140px)" id="gamsSearch" v-on:keyup="updateVue()" v-on:focus="updateVue()" v-model="searchString" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
     </div>
 		<h1>{{name}}</h1>
 		<div>{{type}}</div>
@@ -60,7 +60,7 @@
 	</div>
 	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams-lst'">
     <div class="gv-toolbox block">
-      <atom-text-editor style="display:inline-block;width:100%" id="lstSearch" v-on:keyup="updateLst()" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
+      <atom-text-editor style="display:inline-block;width:100%" id="lstSearch" v-on:keyup="updateLst()" v-on:focus="updateLst()" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
     </div>
 		<div v-if="lstTree">
 			<div v-for="elem in lstTree">
