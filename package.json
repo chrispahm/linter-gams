@@ -32,12 +32,20 @@
   "package-deps": [
     "linter",
     "language-gams",
-    "gams-helpers"
+    "gams-helpers",
+    "console-panel"
   ],
   "providedServices": {
     "linter": {
       "versions": {
         "2.0.0": "provideLinter"
+      }
+    }
+  },
+  "consumedServices": {
+    "console-panel": {
+      "versions": {
+        "^1.0.0": "consumeConsolePanel"
       }
     }
   }
