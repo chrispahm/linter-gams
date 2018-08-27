@@ -1,7 +1,7 @@
 # linter-gams
 
-A plugin for [Atom Linter](https://github.com/AtomLinter/atom-linter) providing a compilation checker for your [GAMS](https://www.gams.com/) models,
-and a sidebar for symbol investigation/navigation. Also supports listing files (.lst).
+A GAMS IDE plugin for Atom. Provides a compilation checker for your [GAMS](https://www.gams.com/) models,
+a sidebar for symbol investigation/navigation, and a data panel. Also supports listing files (.lst).
 ![linter-gams](https://user-images.githubusercontent.com/20703207/40918732-754cd8de-6807-11e8-8e41-b1231e625d9a.gif)
 
 ## Installation
@@ -20,10 +20,9 @@ apm install linter-gams
 In order to function properly, linter-gams needs a valid GAMS executable. It will check for the latest GAMS version found in the PATH variable and the default install directories (Win: `C:/GAMS/*/*/`, `N:/soft/GAMS*/`, OSX: `/Applications/GAMS*/sysdir/`).
 If no installation was found in the default directories, you need to specify one in the packages settings pane (as shown in the picture above). `Linter-gams` runs on top of a regular GAMS installation, therefore the general [GAMS licensing](https://www.gams.com/latest/docs/UG_License.html) restrictions apply.
 
-Linter-gams will try to find out if your GAMS file is part of a [GGIG](http://www.ilr.uni-bonn.de/em/rsrch/ggig/ggig_e.htm) project and will do the necessary adjustments by itself. If you are working on a (non GGIG) multi-file model and want to specify the GAMS entry file, you may do so in the package settings pane. Note that you don't need to specify a path, but rather the actual entry point file name (e.g. entryFile.gms). Linter-gams will search for this file in the same directory as the currently opened file, as well as the first two parent directories.
+Linter-gams will try to find out if your GAMS file is part of a [GGIG](http://www.ilr.uni-bonn.de/em/rsrch/ggig/ggig_e.htm) project and will do the necessary adjustments by itself. If you are working on a (non GGIG) multi-file model and want to specify the GAMS entry file, you may do so in the package settings pane. Note that you don't need to specify a path, but rather the actual entry point file name (e.g. entryFile.gms). Linter-gams will search for this file in the parent directories.
 
-By default, linter-gams will also create a symbol list file (ctags compatible) in your projects root directory.
-This way you can jump to a declaration of a set/parameter/equation etc. as highlighted in the Atom [symbols-view](https://atom.io/packages/symbols-view) core package.
+
 ## Usage
 
 linter-gams will install all necessary packages for GAMS development. Those include [syntax highlighting](atom-language-gams), the [base linter](https://atom.io/packages/linter) (used for error underlining), and some [GAMS helper](https://atom.io/packages/gams-helpers) functions which will be explained here.
@@ -44,6 +43,10 @@ In order to inspect where a variable/parameter/set was defined/assigned values/c
 ![sidebar](https://user-images.githubusercontent.com/20703207/40918757-892cfd84-6807-11e8-8cbe-d1a01b6aff8d.PNG)
 
 You can also search for a symbol. However, the sidebar will only be updated if the search string completely matches a known symbol. At the moment, there is no autocompletion of symbols in the searchbar.
+
+### Data panel (beta)
+![data panel](https://user-images.githubusercontent.com/20703207/44646597-d61da880-a9db-11e8-8b09-99c11ad04ab0.gif)
+Values of sets and paramters, as well as the equation listing for equations or the column listing for variables can be shown with the new data panel feature. In order to activate, turn on the configuration in the `linter-gams` configuration panel, open the bottom dock and then click on a GAMS symbol (as shown in the GIF above). The data panel feature will parse your GAMS file for solve statements, and will try to show the available data right before any solve statement. You can cycle through the solve statements with a dropdown menu at the top right of the data panel.
 
 ### Running your model
 
