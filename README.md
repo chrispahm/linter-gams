@@ -75,32 +75,6 @@ In order to speed up that process, you can simply type `c` at the desired positi
   - Jumping to the next error (even if its in a different file) by opening the command palette (`ctrl-shift-p`) and typing `linter next` or even shorter `li ne`. You can also click on the error in the error pane at the bottom.
   - The amazing [filter-lines](https://atom.io/packages/filter-lines) package (especially useful in Listing files). Just highlight the desired word/symbol and press `ctrl-alt-f`. Similar to KEDITS ALL command.
 
-## Known errors
-`Uncaught TypeError: Cannot read property 'removeChild' of null`
-
-This error occurs frequently and is very hard to track down. However, for the time being, the following workaround exists:
-
-Navigate to the installation directory of the `linter-gams` package. On Windows, the following will most likely work:
-
-`%USERPROFILE%\.atom\packages\linter-gams\node_modules\vue\dist`
-
-In that folder, open the file `vue.common.js`, and change the following code from line 1316
-
-```js
-function remove(el) {
-  el.parentNode.removeChild(el);
-}
-```
-to
-
-```js
-function remove(el) {
-  if (!inDoc(el)) return false;
-  el.parentNode.removeChild(el);
-}
-```
-
-This should solve the issue until an actual fix is available.
 
 ## Contributing
 
