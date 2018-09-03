@@ -46,6 +46,7 @@ You can also search for a symbol. However, the sidebar will only be updated if t
 
 ### Data panel (beta)
 ![data panel](https://user-images.githubusercontent.com/20703207/44646597-d61da880-a9db-11e8-8b09-99c11ad04ab0.gif)
+
 Values of sets and paramters, as well as the equation listing for equations or the column listing for variables can be shown with the new data panel feature. In order to activate, turn on the configuration in the `linter-gams` configuration panel, open the bottom dock and then click on a GAMS symbol (as shown in the GIF above). The data panel feature will parse your GAMS file for solve statements, and will try to show the available data right before any solve statement. You can cycle through the solve statements with a dropdown menu at the top right of the data panel.
 
 ### Running your model
