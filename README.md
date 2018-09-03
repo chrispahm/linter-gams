@@ -62,12 +62,6 @@ abort myParameterOrSet;
 ```
 and run your model (see section above), linter-gams will automatically jump to the parameter display in the listing file. Make sure you have the GAMS View sidebar opened (shift-o), otherwise the listing file will be opened at the beggining of the document.
 
-For very large sets and parameters, an inspection through pivot tables (as seen in the GDX-viewer of the GAMS-IDE or GAMS Studio) is beneficial:
-
-![check-param](https://user-images.githubusercontent.com/20703207/38366892-784d5d06-38e1-11e8-9524-2ccbe697eaa8.gif)
-
-In order to speed up that process, you can simply type `c` at the desired position and press `TAB` in order to complete the snippet. As shown in the above gif, two lines will be pre-filled for you, so now all you have to do is enter the name of the set/parameter to inspect. Once done, just press `shift-alt-enter`. The model will again run in the background, and open the desired set/parameter in a new browser tab. This feature requires a working `Python` installation in the path variable.
-
 ### Other things I found useful in Atom for GAMS coding
   - The pre-installed autosave functionality (Settings -> Packages -> Autosave -> Enable (it's a checkbox inside the packages settings)).
   - Using the fuzzy file finder `ctrl-p` instead of searching for a file in the project tree view
