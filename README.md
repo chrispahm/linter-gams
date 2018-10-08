@@ -14,7 +14,7 @@ apm install linter-gams
 ```
 
 ## Configuration
-
+### Global configuration
 ![settings](https://user-images.githubusercontent.com/20703207/43004451-1f473a2c-8c30-11e8-9a51-8203fc7121b0.png)
 
 In order to function properly, linter-gams needs a valid GAMS executable. It will check for the latest GAMS version found in the PATH variable and the default install directories (Win: `C:/GAMS/*/*/`, `N:/soft/GAMS*/`, OSX: `/Applications/GAMS*/sysdir/`).
@@ -22,6 +22,27 @@ If no installation was found in the default directories, you need to specify one
 
 Linter-gams will try to find out if your GAMS file is part of a [GGIG](http://www.ilr.uni-bonn.de/em/rsrch/ggig/ggig_e.htm) project and will do the necessary adjustments by itself. If you are working on a (non GGIG) multi-file model and want to specify the GAMS entry file, you may do so in the package settings pane. Note that you don't need to specify a path, but rather the actual entry point file name (e.g. entryFile.gms). Linter-gams will search for this file in the parent directories.
 
+### Project configuration
+When working with multiple projects, individual project configuration files can be specified. The project file should be located in the projects `root` directory. If you need to specify a model-entry file, make sure that the `.gamslintc.js` file is in the same directory.
+
+Example of a `.gamslintc.js` configuration file.
+```js
+module.exports = {
+  'Gams Executable': 'String',
+  'Scratch directory': 'String',
+  'Jump to Abort': true,
+  'Auto unfold listing entries treshold': 10,
+  'Only auto unfold display statements': true,
+  'Default parameter to jump to after solve': 'gamsParameter',
+  'Multi-file entry point': 'my_model.gms',
+  'Command Line Arguments - Compilation': ['--myArg=3','--myOtherArg5'],
+  'Command Line Arguments - Execution': ['--myArg=3','--myOtherArg5'],
+  'Parse symbol values': false,
+  'Console limrow': 3,
+  'Console limcol': 3,
+  'Console dispWidth': 15
+}
+```
 
 ## Usage
 
