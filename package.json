@@ -1,7 +1,7 @@
 {
   "name": "linter-gams",
   "main": "./lib/main",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "A linter provider for GAMS language",
   "keywords": [
     "atom-linter",
