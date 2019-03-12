@@ -32,6 +32,7 @@
   "package-deps": [
     "linter",
     "language-gams",
+    "autocomplete-gams",
     "gams-helpers",
     "console-panel"
   ],
