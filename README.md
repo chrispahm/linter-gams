@@ -13,6 +13,27 @@ Alternatively, you can install through the CLI by running:
 apm install linter-gams
 ```
 
+## Known issues
+It may occur, that the `GAMS View` sidebar is not properly updating a symbol that you click upon.
+That may have two reasons:
+
+a) The symbol you clicked is not read by the compiler, in this case `GAMS View` works as expected and you have to check your code logic (e.g. `$if` statements) for why the symbol is not read.
+Example
+```GAMS
+$SETGLOBAL Country "France"
+
+$iftheni.de %Country%=="Germany"
+  set test / 'Lederhosen', 'Wurst'/;
+* If you click on `test`, `Gams View` will not update or show anything
+* because this part of the code is not read by the compiler.
+* It will show just fine if you change the value of the $SETGLOBAL to "Germany"
+$endif.de
+```
+
+b) There was an internal update error produced by `linter-gams`. You can get rid of this really easy by pressing `ctrl-shift-p` and typing `reload` and enter. I still haven't figured out what causes these errors (anyone who is interested in this problem is more than welcome to investigate and submit a PR).
+
+When you run into issues or bugs, please be so kind and submit an issue here on GitHub, or write a short mail. 
+
 ## Configuration
 ### Global configuration
 ![settings](https://user-images.githubusercontent.com/20703207/43004451-1f473a2c-8c30-11e8-9a51-8203fc7121b0.png)
