@@ -1,6 +1,6 @@
 <div class='gams-view'>
-	<div class="no-file-hint" v-show="noTagHint"><pre>{{noTagHint}}</pre></div>
-	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams'">
+	<div class="no-file-hint" v-if="noTagHint"><pre>{{noTagHint}}</pre></div>
+	<div class="tree-panel" v-if="!noTagHint && grammarScope=='source.gams'">
     <div class="gv-toolbox block">
       <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight icon-left basic-button" value="lock" title="Backward" @click="moveCursor('back')"></div>
       <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight icon-right basic-button" value="lock" title="Forward" @click="moveCursor"></div>
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams-lst'">
+	<div class="tree-panel" v-if="!noTagHint && grammarScope=='source.gams-lst'">
     <div class="gv-toolbox block">
       <atom-text-editor style="display:inline-block;width:100%" id="lstSearch" v-on:keyup="updateLst()" v-on:focus="updateLst()" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
     </div>
