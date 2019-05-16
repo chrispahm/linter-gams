@@ -1,5 +1,8 @@
 {
-    "atom-workspace": {
+    ".platform-linux atom-workspace, .platform-win32 atom-workspace": {
         "ctrl-o": "gams-view:toggle"
+    },
+    ".platform-darwin atom-workspace": {
+        "cmd-o": "gams-view:toggle"
     }
 }

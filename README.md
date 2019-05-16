@@ -4,6 +4,8 @@ A GAMS IDE plugin for Atom. Provides a compilation checker for your [GAMS](https
 a sidebar for symbol investigation/navigation, and a data panel. Also supports listing files (.lst).
 ![linter-gams](https://user-images.githubusercontent.com/20703207/40918732-754cd8de-6807-11e8-8e41-b1231e625d9a.gif)
 
+When you run into issues or bugs, please be so kind and submit an issue here on GitHub, or write a short mail. 
+
 ## Installation
 You can install from Settings view (`shift-comma`) by searching for `linter-gams`.
 
@@ -12,27 +14,6 @@ Alternatively, you can install through the CLI by running:
 ```
 apm install linter-gams
 ```
-
-## Known issues
-It may occur, that the `GAMS View` sidebar is not properly updating a symbol that you click upon.
-That may have two reasons:
-
-a) The symbol you clicked is not read by the compiler, in this case `GAMS View` works as expected and you have to check your code logic (e.g. `$if` statements) for why the symbol is not read.
-Example
-```GAMS
-$SETGLOBAL Country "France"
-
-$iftheni.de %Country%=="Germany"
-  set test / 'Lederhosen', 'Wurst'/;
-* If you click on `test`, `Gams View` will not update or show anything
-* because this part of the code is not read by the compiler.
-* It will show just fine if you change the value of the $SETGLOBAL to "Germany"
-$endif.de
-```
-
-b) There was an internal update error produced by `linter-gams`. You can get rid of this really easy by pressing `ctrl-shift-p` and typing `reload` and enter. I still haven't figured out what causes these errors (anyone who is interested in this problem is more than welcome to investigate and submit a PR).
-
-When you run into issues or bugs, please be so kind and submit an issue here on GitHub, or write a short mail. 
 
 ## Configuration
 ### Global configuration
@@ -43,27 +24,6 @@ If no installation was found in the default directories, you need to specify one
 
 Linter-gams will try to find out if your GAMS file is part of a [GGIG](http://www.ilr.uni-bonn.de/em/rsrch/ggig/ggig_e.htm) project and will do the necessary adjustments by itself. If you are working on a (non GGIG) multi-file model and want to specify the GAMS entry file, you may do so in the package settings pane. Note that you don't need to specify a path, but rather the actual entry point file name (e.g. entryFile.gms). Linter-gams will search for this file in the parent directories.
 
-### Project configuration
-When working with multiple projects, individual project configuration files can be specified. The project file should be located in the projects `root` directory. If you need to specify a model-entry file, make sure that the `.gamslintc.js` file is in the same directory.
-
-Example of a `.gamslintc.js` configuration file.
-```js
-module.exports = {
-  'Gams Executable': 'String',
-  'Scratch directory': 'String',
-  'Jump to Abort': true,
-  'Auto unfold listing entries treshold': 10,
-  'Only auto unfold display statements': true,
-  'Default parameter to jump to after solve': 'gamsParameter',
-  'Multi-file entry point': 'my_model.gms',
-  'Command Line Arguments - Compilation': ['--myArg=3','--myOtherArg5'],
-  'Command Line Arguments - Execution': ['--myArg=3','--myOtherArg5'],
-  'Parse symbol values': false,
-  'Console limrow': 3,
-  'Console limcol': 3,
-  'Console dispWidth': 15
-}
-```
 
 ## Usage
 
@@ -77,7 +37,6 @@ This feature is enabled by default, and will work as long as a valid GAMS execut
 ![linter-settings](https://user-images.githubusercontent.com/20703207/38366895-789ff5fc-38e1-11e8-95fe-f70dea16e1a8.PNG)
 
 Note that only the first error will be displayed, as typically subsequent errors may be resulting from that first error. Also note that errors will only be shown in active files -> if you work on a file which is currently not enabled (e.g. due to GUI settings in GGIG projects) no error checking will be done on that file.
-
 
 ### Symbol overview
 In order to inspect where a variable/parameter/set was defined/assigned values/controlled/referenced or just to see its description, you can open `GAMS View` by using the shortcut `ctrl-o` or by opening the command palette (`ctrl-shift-p`) and typing `GAMS View: Show`. If the cursor is set inside a known symbol, the sidebar will be updated accordingly. A click on a given entry will jump to that symbol (also if the symbol is in another file). If you want to keep the sidebar from constantly updating while moving the cursor (e.g. when deeply inspecting a given symbol), you can click the lock button in the top left corner.
@@ -104,6 +63,44 @@ If you type
 abort myParameterOrSet;
 ```
 and run your model (see section above), linter-gams will automatically jump to the parameter display in the listing file. Make sure you have the GAMS View sidebar opened (shift-o), otherwise the listing file will be opened at the beggining of the document.
+
+### Project configuration
+When working with multiple projects, individual project configuration files can be specified. The project file should be located in the projects `root` directory. If you need to specify a model-entry file, make sure that the `.gamslintc.js` file is in the same directory.
+
+Example of a `.gamslintc.js` configuration file.
+```js
+module.exports = {
+  'Gams Executable': 'String',
+  'Scratch directory': 'String',
+  'Jump to Abort': true,
+  'Auto unfold listing entries treshold': 10,
+  'Only auto unfold display statements': true,
+  'Default parameter to jump to after solve': 'gamsParameter',
+  'Multi-file entry point': 'my_model.gms',
+  'Command Line Arguments - Compilation': ['--myArg=3','--myOtherArg5'],
+  'Command Line Arguments - Execution': ['--myArg=3','--myOtherArg5'],
+  'Parse symbol values': false,
+  'Console limrow': 3,
+  'Console limcol': 3,
+  'Console dispWidth': 15
+}
+```
+
+## Gotchas
+It may occur, that the `GAMS View` sidebar is not updating for a symbol that you click upon.
+
+In that case, the symbol you clicked is not read by the GAMS compiler, and you need to check your code logic (e.g. `$if` statements) for why the symbol is not read.
+Example
+```GAMS
+$SETGLOBAL Country "France"
+
+$iftheni.de %Country%=="Germany"
+  set test / 'Lederhosen', 'Wurst'/;
+* If you click on `test`, `Gams View` will not update or show anything
+* because this part of the code is not read by the compiler.
+* It will show just fine if you change the value of the $SETGLOBAL to "Germany"
+$endif.de
+```
 
 ### Other things I found useful in Atom for GAMS coding
   - The pre-installed autosave functionality (Settings -> Packages -> Autosave -> Enable (it's a checkbox inside the packages settings)).
