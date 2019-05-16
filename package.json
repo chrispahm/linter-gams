@@ -27,7 +27,8 @@
     "readline-specific": "^1.0.4",
     "shelljs": "^0.8.1",
     "simple-undo": "^1.0.2",
-    "vue": "^1.0.27-csp"
+    "vue": "^2.6.10",
+    "vue-server-renderer": "^2.6.10"
   },
   "package-deps": [
     "linter",
