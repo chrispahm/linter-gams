@@ -12,7 +12,7 @@ import utils from '../lib/utils/util.js'
 
 let cursorHistory = {}
 
-let history = new SimpleUndo({
+const history = new SimpleUndo({
   maxLength: 10,
   provider: objectSerializer
 })
@@ -87,6 +87,7 @@ module.exports = new Vue({
       // save current and new cursor position in history
       // and also current vue symbol
       if (!noSave) {
+        if (!cursorHistory) cursorHistory = {}
         cursorHistory.position = this.cursorPosition
         cursorHistory.name = this.name
         history.save()
@@ -199,6 +200,7 @@ module.exports = new Vue({
         })
       } else {
         // save state
+        if (!cursorHistory) cursorHistory = {}
         cursorHistory.position = this.cursorPosition
         cursorHistory.name = this.name
         history.save()
