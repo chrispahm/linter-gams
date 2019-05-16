@@ -1,6 +1,6 @@
 <div class='gams-view'>
-	<div class="no-file-hint" v-show="noTagHint"><pre>{{noTagHint}}</pre></div>
-	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams'">
+	<div class="no-file-hint" v-if="noTagHint"><p>{{noTagHint}}</p></div>
+	<div class="tree-panel" v-if="!noTagHint && grammarScope=='source.gams'">
     <div class="gv-toolbox block">
       <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight icon-left basic-button" value="lock" title="Backward" @click="moveCursor('back')"></div>
       <div style="display:inline-block; vertical-align:top;height:30px;width:30px" class="inline-block-tight icon-right basic-button" value="lock" title="Forward" @click="moveCursor"></div>
@@ -14,7 +14,7 @@
 			<h2 v-if="description">{{description}}</h2>
 			<div v-if="domain">
 				<h3>Domain</h3>
-				<p v-for="elem in domain" :key="assigned.name" @click="updateValues(null,elem.name)">{{elem.name}}</p>
+				<p v-for="(elem,i) in domain" :key="`domain_${elem.name}_${i}`" @click="updateValues(null,elem.name)">{{elem.name}}</p>
 			</div>
 			<h3 v-if="declared" @click="jumpToPosition(declared.file,declared.line,declared.column)">Declared in</h3>
 			<p v-if="declared" @click="jumpToPosition(declared.file,declared.line,declared.column)">{{declared.base}}, {{declared.line}}</p>
@@ -26,7 +26,7 @@
 			</div>
 			<div v-if="assigned && assignedShown">
 				<div transition="expand">
-					<p v-for="elem in assigned" :key="assigned.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
+					<p v-for="(elem,i) in assigned" :key="`assigned_${elem.name}_${i}`" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 				</div>
 			</div>
 			<div v-if="implAsn">
@@ -35,7 +35,7 @@
 			</div>
 			<div v-if="implAsn && implAsnShown">
 				<div transition="expand">
-					<p v-for="elem in implAsn" :key="implAsn.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
+					<p v-for="(elem,i) in implAsn" :key="`implAsn_${elem.name}_${i}`" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 				</div>
 			</div>
 			<div v-if="ref">
@@ -44,7 +44,7 @@
 			</div>
 			<div v-if="ref && refShown">
 				<div transition="expand">
-					<p v-for="elem in ref" :key="ref.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
+					<p v-for="(elem,i) in ref" :key="`ref_${elem.file}_${elem.column}_${i}`" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 				</div>
 			</div>
 			<div v-if="control">
@@ -53,28 +53,30 @@
 			</div>
 			<div v-if="control && controlShown">
 				<div transition="expand">
-					<p v-for="elem in control" :key="control.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
+					<p v-for="(elem,i) in control" :key="`expand_${elem.name}_${elem.base}_${i}`" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="tree-panel" v-show="!noTagHint && grammarScope=='source.gams-lst'">
+	<div class="tree-panel" v-if="!noTagHint && grammarScope=='source.gams-lst'">
     <div class="gv-toolbox block">
       <atom-text-editor style="display:inline-block;width:100%" id="lstSearch" v-on:keyup="updateLst()" v-on:focus="updateLst()" class="editor mini" mini="" data-encoding="utf8" data-grammar="text plain null-grammar" placeholder-text="Search" tabindex="-1"></atom-text-editor>
     </div>
 		<div v-if="lstTree">
-			<div v-for="elem in lstTree">
+			<div v-for="(elem,i) in lstTree">
 				<h3 style="font-weight: normal; font-size: 1em; display: inline-block; line-height: 1em; padding-right: 7px; margin-top: 4px; margin-bottom: 4px;" @click="jumpToggle(elem)"> {{elem.type}} </h3>
 				<button v-if="elem.entries" style="margin-top: 2px; margin-bottom: 2px;"class="counter" type="button" name="button" @click="jumpToggle(elem)"> {{elem.entries.length}} </button>
 				<div v-if="elem.entries && elem.open" transition="expand">
-					<p v-if="elem.entries" v-for="entry in elem.entries" :key="entry.name" @click="jumpToPosition(entry.file,entry.line,entry.column)">{{entry.name}}, {{entry.line}}</p>
+					<p v-if="elem.entries" v-for="entry in elem.entries" :key="`entry_${entry.name}_${i}_${entry.line}`" @click="jumpToPosition(entry.file,entry.line,entry.column)">{{entry.name}}, {{entry.line}}</p>
 				</div>
 			</div>
 		</div>
+		<!--
 		<div v-if="assigned && assignedShown">
 			<div transition="expand">
 				<p v-for="elem in assigned" :key="assigned.name" @click="jumpToPosition(elem.file,elem.line,elem.column)">{{elem.base}}, {{elem.line}}</p>
 			</div>
 		</div>
+		-->
 	</div>
 </div>
