@@ -1,6 +1,6 @@
 'use babel'
 
-import Vue from 'Vue/dist/vue.js'
+import Vue from 'vue/dist/vue.js'
 import { CompositeDisposable, watchPath } from 'atom'
 import _ from 'lodash'
 import fs from 'fs'
