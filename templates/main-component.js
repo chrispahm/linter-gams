@@ -62,8 +62,8 @@ module.exports = new Vue({
   },
 
   created: function () {
-    this.debouncedUpdateVue = _.debounce(this.updateVue, 500, { leading: true})
-    this.debouncedParseLst = _.debounce(this.parseListing, 3000, { leading: true})
+    this.debouncedUpdateVue = _.debounce(this.updateVue, 250, { leading: true})
+    this.debouncedParseLst = _.debounce(this.parseListing, 20, { leading: true})
     this.initialize()
   },
 
