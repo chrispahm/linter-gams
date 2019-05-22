@@ -4,7 +4,7 @@ A GAMS IDE plugin for Atom. Provides a compilation checker for your [GAMS](https
 a sidebar for symbol investigation/navigation, and a data panel. Also supports listing files (.lst).
 ![linter-gams](https://user-images.githubusercontent.com/20703207/40918732-754cd8de-6807-11e8-8e41-b1231e625d9a.gif)
 
-When you run into issues or bugs, please be so kind and submit an issue here on GitHub, or write a short mail. 
+When you run into issues or bugs, please be so kind and submit an issue here on GitHub, or write a short mail.
 
 ## Installation
 You can install from Settings view (`shift-comma`) by searching for `linter-gams`.
@@ -39,11 +39,13 @@ This feature is enabled by default, and will work as long as a valid GAMS execut
 Note that only the first error will be displayed, as typically subsequent errors may be resulting from that first error. Also note that errors will only be shown in active files -> if you work on a file which is currently not enabled (e.g. due to GUI settings in GGIG projects) no error checking will be done on that file.
 
 ### Symbol overview
-In order to inspect where a variable/parameter/set was defined/assigned values/controlled/referenced or just to see its description, you can open `GAMS View` by using the shortcut `ctrl-o` or by opening the command palette (`ctrl-shift-p`) and typing `GAMS View: Show`. If the cursor is set inside a known symbol, the sidebar will be updated accordingly. A click on a given entry will jump to that symbol (also if the symbol is in another file). If you want to keep the sidebar from constantly updating while moving the cursor (e.g. when deeply inspecting a given symbol), you can click the lock button in the top left corner.
+In order to inspect where a variable/parameter/set was defined/assigned values/controlled/referenced or just to see its description, you can open `GAMS View` by using the shortcut `ctrl-o` or by opening the command palette (`ctrl-shift-p`) and typing `gams: show`. If the cursor is set inside a known symbol, the sidebar will be updated accordingly. A click on a given entry will jump to that symbol (also if the symbol is in another file). If you want to keep the sidebar from constantly updating while moving the cursor (e.g. when deeply inspecting a given symbol), you can click the lock button in the top left corner.
+
+You can also search for a symbol with the searchbar shown at the upper part of the sidebar.
+
 
 ![sidebar](https://user-images.githubusercontent.com/20703207/40918757-892cfd84-6807-11e8-8cbe-d1a01b6aff8d.PNG)
 
-You can also search for a symbol. However, the sidebar will only be updated if the search string completely matches a known symbol. At the moment, there is no autocompletion of symbols in the searchbar.
 
 ### Data panel (beta)
 ![data panel](https://user-images.githubusercontent.com/20703207/44646597-d61da880-a9db-11e8-8b09-99c11ad04ab0.gif)
@@ -53,6 +55,12 @@ Values of sets and paramters, as well as the equation listing for equations or t
 ### Running your model
 
 There are multiple options for running your model: You can either press the 'run' button in the sidebar, by pressing `shift-enter` or by opening the command palette (`ctrl-shift-p`) and typing `GAMS run` or just `run`. The model will be solved in the background, so you can continue working. While the model is solving, the `busy-signal` dot (usually green) at the bottom will be blinking. Once the model is solved, the listing file will be opened automatically in a new pane.
+
+### Re-parsing a listing file
+
+It may occur that the `.lst` file was openend in Atom before GAMS finished writing all information to the file.
+This may lead to the sidebar not showing the correct line positions and symbols in the sidebar.
+The listing file can be re-parsed by running the `gams: reload-listing` command from the command palette (`ctrl-shift-p`/`cmd-shift-p`).
 
 ### Inspecting a parameter / set at a given position
 
