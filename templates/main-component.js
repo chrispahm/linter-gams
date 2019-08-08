@@ -182,8 +182,9 @@ module.exports = new Vue({
       this.fileWatchers = atom.project.getPaths().forEach(project => {
         watchPath(project,{}, events => {
           for (const event of events) {
-            if (path.extname(event.path) !== '.lst') continue
-            this.debouncedParseLst(event.path, true)
+            if (path.extname(event.path) === '.lst' && this.viewShow) {
+              this.debouncedParseLst(event.path, true)
+            }  
           }
         })
       })
