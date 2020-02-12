@@ -2,7 +2,7 @@
 
 A GAMS IDE plugin for Atom. Provides a compilation checker for your [GAMS](https://www.gams.com/) models,
 a sidebar for symbol investigation/navigation, and a data panel. Also supports listing files (.lst).
-![linter-gams](https://user-images.githubusercontent.com/20703207/40918732-754cd8de-6807-11e8-8e41-b1231e625d9a.gif)
+![linter-gams](https://user-images.githubusercontent.com/20703207/74334065-78307c80-4d99-11ea-8d29-7211a58e33e6.gif)
 
 When you run into issues or bugs, please be so kind and submit an issue here on GitHub, or write a short mail.
 
@@ -36,7 +36,9 @@ This feature is enabled by default, and will work as long as a valid GAMS execut
 
 ![linter-settings](https://user-images.githubusercontent.com/20703207/38366895-789ff5fc-38e1-11e8-95fe-f70dea16e1a8.PNG)
 
-Note that only the first error will be displayed, as typically subsequent errors may be resulting from that first error. Also note that errors will only be shown in active files -> if you work on a file which is currently not enabled (e.g. due to GUI settings in GGIG projects) no error checking will be done on that file.
+Note that by default, only the first error will be displayed, as typically subsequent errors may be resulting from that first error. Also note that errors will only be shown in active files -> if you work on a file which is currently not enabled (e.g. due to GUI settings in GGIG projects) no error checking will be done on that file.
+
+You can change the maximum amount of errors shown in the settings pane. Bear in mind that due to limitations in the `linter-ui`, the order in which the errors are shown is alphabetical by path and does not reflect the GAMS error order.
 
 ### Symbol overview
 In order to inspect where a variable/parameter/set was defined/assigned values/controlled/referenced or just to see its description, you can open `GAMS View` by using the shortcut `ctrl-o` or by opening the command palette (`ctrl-shift-p`) and typing `gams: show`. If the cursor is set inside a known symbol, the sidebar will be updated accordingly. A click on a given entry will jump to that symbol (also if the symbol is in another file). If you want to keep the sidebar from constantly updating while moving the cursor (e.g. when deeply inspecting a given symbol), you can click the lock button in the top left corner.
@@ -47,14 +49,22 @@ You can also search for a symbol with the searchbar shown at the upper part of t
 ![sidebar](https://user-images.githubusercontent.com/20703207/40918757-892cfd84-6807-11e8-8cbe-d1a01b6aff8d.PNG)
 
 
-### Data panel (beta)
+### Data panel
 ![data panel](https://user-images.githubusercontent.com/20703207/44646597-d61da880-a9db-11e8-8b09-99c11ad04ab0.gif)
 
 Values of sets and paramters, as well as the equation listing for equations or the column listing for variables can be shown with the new data panel feature. In order to activate, turn on the configuration in the `linter-gams` configuration panel, open the bottom dock and then click on a GAMS symbol (as shown in the GIF above). The data panel feature will parse your GAMS file for solve statements, and will try to show the available data right before any solve statement. You can cycle through the solve statements with a dropdown menu at the top right of the data panel.
 
+If the data panel does not show any values, make sure that a) your model is free of compilation errors and b) has at least one solve statement
+
 ### Running your model
 
-There are multiple options for running your model: You can either press the 'run' button in the sidebar, by pressing `shift-enter` or by opening the command palette (`ctrl-shift-p`) and typing `GAMS run` or just `run`. The model will be solved in the background, so you can continue working. While the model is solving, the `busy-signal` dot (usually green) at the bottom will be blinking. Once the model is solved, the listing file will be opened automatically in a new pane.
+There are multiple options for running your model: 
+
+ - Click the 'play' button in the sidebar
+ - Press `shift-enter` on your keyboard
+ - Open the command palette (`ctrl-shift-p`) and type `GAMS run` or just `run` followed by `enter`. 
+
+ The model will be solved in the background, so you can continue working. While the model is solving, the `busy-signal` dot (usually green) at the bottom will be blinking, and the bottom panel will open showing the models console output. Once the model is solved, the listing file will be opened automatically in a new pane.
 
 ### Re-parsing a listing file
 
