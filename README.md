@@ -19,7 +19,7 @@ apm install linter-gams
 ### Global configuration
 ![settings](https://user-images.githubusercontent.com/20703207/43004451-1f473a2c-8c30-11e8-9a51-8203fc7121b0.png)
 
-In order to function properly, linter-gams needs a valid GAMS executable. It will check for the latest GAMS version found in the PATH variable and the default install directories (Win: `C:/GAMS/*/*/`, `N:/soft/GAMS*/`, OSX: `/Applications/GAMS*/sysdir/`).
+In order to function properly, linter-gams needs a valid GAMS executable. It will check for the latest GAMS version found in the PATH variable and the default install directories (Win: `C:/GAMS/*/*/`, `N:/soft/GAMS*/`, OSX: `/Applications/GAMS*/sysdir/`, `/Applications/GAMS*/Resource/sysdir/`).
 If no installation was found in the default directories, you need to specify one in the packages settings pane (as shown in the picture above). `Linter-gams` runs on top of a regular GAMS installation, therefore the general [GAMS licensing](https://www.gams.com/latest/docs/UG_License.html) restrictions apply.
 
 Linter-gams will try to find out if your GAMS file is part of a [GGIG](http://www.ilr.uni-bonn.de/em/rsrch/ggig/ggig_e.htm) project and will do the necessary adjustments by itself. If you are working on a (non GGIG) multi-file model and want to specify the GAMS entry file, you may do so in the package settings pane. Note that you don't need to specify a path, but rather the actual entry point file name (e.g. entryFile.gms). Linter-gams will search for this file in the parent directories.
@@ -38,7 +38,7 @@ This feature is enabled by default, and will work as long as a valid GAMS execut
 
 Note that by default, only the first error will be displayed, as typically subsequent errors may be resulting from that first error. Also note that errors will only be shown in active files -> if you work on a file which is currently not enabled (e.g. due to GUI settings in GGIG projects) no error checking will be done on that file.
 
-You can change the maximum amount of errors shown in the settings pane. Bear in mind that due to limitations in the `linter-ui`, the order in which the errors are shown is alphabetical by path and does not reflect the GAMS error order.
+You can change the maximum amount of errors shown in the settings pane. If you change the maximum amount of errors to display, only the first error will be highlighted with the severity 'Error', the second as a 'Warning', and all subsequent errors as 'Info' in the `linter-ui` bottom dock. This way, you can quickly identify the first error, as due to limitations in the `linter-ui` interface errors cannot be ranked otherwise.
 
 ### Symbol overview
 In order to inspect where a variable/parameter/set was defined/assigned values/controlled/referenced or just to see its description, you can open `GAMS View` by using the shortcut `ctrl-o` or by opening the command palette (`ctrl-shift-p`) and typing `gams: show`. If the cursor is set inside a known symbol, the sidebar will be updated accordingly. A click on a given entry will jump to that symbol (also if the symbol is in another file). If you want to keep the sidebar from constantly updating while moving the cursor (e.g. when deeply inspecting a given symbol), you can click the lock button in the top left corner.
