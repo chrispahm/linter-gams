@@ -182,3 +182,104 @@
 		border: 1px solid @button-border-color;
 	}
 }
+
+#gams-panel-output {
+  padding-top: 50px;
+}
+
+.gamsSearchHighlight {
+  background-color: @background-color-highlight;
+}
+
+.gamsSearchActive {
+  background-color: @background-color-selected;
+  color: @text-color-selected;
+}
+
+#gams-panel-search-container {
+  background-color: @input-background-color;
+  position: absolute;
+  left: 20px;
+  width: 300px;
+  opacity: 1;
+  font-size: 12px;
+  border: 1px solid @input-border-color;
+  border-radius: 3px;
+}
+
+#gams-panel-search-container > input {
+  background-color: @input-background-color;
+  color: @text-color;
+  border: none;
+  padding: 10px
+}
+#gams-panel-search-container > span:nth-child(3) {
+  color: @text-color-subtle;
+  cursor: pointer;
+  position: absolute;
+  right: 50px;
+  font-size: 20px;
+  top: 5px;
+  transform: rotate(90deg);
+  user-select: none;
+}
+#gams-panel-search-container > span:nth-child(4) {
+  color: @text-color-subtle;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  font-size: 20px;
+  transform: rotate(90deg);
+  top: 5px;
+  user-select: none;
+}
+
+#gams-panel-search-container > span:nth-child(2) {
+  color: @text-color-subtle;
+  position: absolute;
+  top: 10px;
+  right: 80px;
+}
+
+.gams-loading-spinner {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  visibility: hidden;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}

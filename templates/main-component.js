@@ -9,6 +9,7 @@ import SimpleUndo from'simple-undo'
 import { filter } from 'fuzzaldrin'
 import lst from '../lib/lstParser.js'
 import utils from '../lib/utils/util.js'
+import cSearch from '../lib/utils/consoleSearch.js'
 
 let cursorHistory = {}
 
@@ -331,30 +332,99 @@ module.exports = new Vue({
     updateConsole(symbol) {
       this.consolePanel.clear()
       this.consolePanel.stickTop()
-      if (global.gamsUpdating && global.gamsUpdating.a) {
+
+      if (!symbol.data && global.gamsUpdating && global.gamsUpdating.a) {
         this.consolePanel.log('Values are being updated...')
       } else if (!symbol.data) {
         this.consolePanel.log(`No data available for ${symbol.name}. Check for compilation, program flow and execuction errors.`)
       } else {
         // create elements
         const container = document.createElement('div')
-        // const dropDown = document.createElement('select')
-        let p
-
-        /*
-        dropDown.style = 'float: right;'
-        dropDown.onchange = () => {
-          this.selectedSolve = dropDown.value
-          this.debouncedUpdateVue(this.clickedSym)
+        // add loading spinner
+        const spinner = document.createElement('div')
+        spinner.innerHTML = `<div class="gams-loading-spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+        </div>`
+        if (global.gamsUpdating && global.gamsUpdating.a) {
+          spinner.firstChild.style.visibility = 'visible'
         }
-        */
+        container.appendChild(spinner)
+        const searchContainer = document.createElement('span')
+        const search = document.createElement('input')
+        const resCount = document.createElement('span')
+        const prevResult = document.createElement('span')
+        const nextResult = document.createElement('span')
+        prevResult.onclick = () => {return highlight('prev')}
+        nextResult.onclick = () => {return highlight('next')}
+        
+        prevResult.innerHTML = '❮'
+        nextResult.innerHTML = '❯'
+        searchContainer.appendChild(search)
+        searchContainer.appendChild(resCount)
+        searchContainer.appendChild(prevResult)
+        searchContainer.appendChild(nextResult)
+        searchContainer.id = 'gams-panel-search-container'
+        
+        const p = document.createElement('div')
+        p.id = 'gams-panel-output'
+        // search.style = 'float: right;'
+        search.placeholder = 'Search'
+        search.oninput = _.debounce(dataPanelSearch, 300)
+        search.onkeydown = e => {
+          if (e.key === 'Enter') highlight('next')
+        }
+        
+        let searchResults
+        let curResult = 0
+        
+        function highlight(direction) {
+          if (!searchResults) return
+          if (direction === 'next') {
+            if (curResult + 1 === searchResults) { 
+              curResult = 0
+              resCount.innerHTML = `1/${searchResults}`
+              return cSearch.highlight('gams-panel-0') 
+            }
+            curResult++
+            resCount.innerHTML = `${curResult + 1}/${searchResults}`
+            return cSearch.highlight(`gams-panel-${curResult}`) 
+          } else {
+            if (curResult - 1 < 0) {
+              curResult = searchResults
+            }
+            curResult--
+            resCount.innerHTML = `${curResult + 1}/${searchResults}`
+            return cSearch.highlight(`gams-panel-${curResult}`) 
+          }
+        }
+        
+        function dataPanelSearch(e) {
+          const input = e.target.value
+          if (symbol.data && input.length > 2) {
+            const results = cSearch.search(input, symbol.data)
+            p.innerHTML = results.text
+            searchResults = results.occurances
+            if (searchResults) {
+              resCount.innerHTML = `1/${searchResults}`
+              cSearch.highlight('gams-panel-0')
+            } else {
+              resCount.innerHTML = '0/0'
+            }
+          } else {
+            resCount.innerHTML = ''
+            searchResults = 0
+            p.innerHTML = symbol.data
+          }
+        }
+      
         // check if data is available for this solve
         if (symbol.data) {
-          p = document.createTextNode(symbol.data)
+          p.appendChild(document.createTextNode(symbol.data))
         } else {
-          p = document.createTextNode('No data available for this symbol')
+          p.appendChild(document.createTextNode('No data available for this symbol'))
         }
-
+        
         // fill drop down menu
         /*
         global.gamsSolves.forEach((solve, index) => {
@@ -369,7 +439,7 @@ module.exports = new Vue({
         */
 
         // append elements to container
-        // container.appendChild(dropDown)
+        container.appendChild(searchContainer)
         container.appendChild(p)
 
         // append to console
