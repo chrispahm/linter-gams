@@ -338,22 +338,25 @@ module.exports = new Vue({
       } else {
         // create elements
         const container = document.createElement('div')
-        const dropDown = document.createElement('select')
+        // const dropDown = document.createElement('select')
         let p
 
+        /*
         dropDown.style = 'float: right;'
         dropDown.onchange = () => {
           this.selectedSolve = dropDown.value
           this.debouncedUpdateVue(this.clickedSym)
         }
+        */
         // check if data is available for this solve
-        if (symbol.data[this.selectedSolve]) {
-          p = document.createTextNode(symbol.data[this.selectedSolve].data)
+        if (symbol.data) {
+          p = document.createTextNode(symbol.data)
         } else {
-          p = document.createTextNode(`No data available for solve from line ${this.selectedSolve}`)
+          p = document.createTextNode('No data available for this symbol')
         }
 
         // fill drop down menu
+        /*
         global.gamsSolves.forEach((solve, index) => {
           const option = document.createElement('option')
           option.value = index
@@ -363,9 +366,10 @@ module.exports = new Vue({
           option.innerHTML = `${index + 1}. solve statement, model ${solve.model}`
           dropDown.appendChild(option)
         })
+        */
 
         // append elements to container
-        container.appendChild(dropDown)
+        // container.appendChild(dropDown)
         container.appendChild(p)
 
         // append to console
