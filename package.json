@@ -1,7 +1,7 @@
 {
   "name": "linter-gams",
   "main": "./lib/main",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "description": "A linter provider for GAMS language",
   "keywords": [
     "atom-linter",
@@ -29,7 +29,8 @@
     "simple-undo": "^1.0.2",
     "vue": "^2.6.12"
   },
-  "package-deps": [{
+  "package-deps": [
+    {
       "name": "linter"
     },
     {
