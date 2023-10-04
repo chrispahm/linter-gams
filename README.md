@@ -1,3 +1,5 @@
+# DEPRECATED - Moved to VSCode → https://github.com/chrispahm/gams-ide
+
 # linter-gams
 
 A GAMS IDE plugin for Atom. Provides a compilation checker for your [GAMS](https://www.gams.com/) models,
